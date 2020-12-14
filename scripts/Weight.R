@@ -1,35 +1,42 @@
-# library(ggplot2)
-# library(ggrepel)
+library(ggplot2)
 
+Jan <- c(1:31)
+Feb <- c(1:28)
+Mar <- c(1:31)
+Apr <- c(1:30)
 May <- c(1:31)
-June <- c(1:30)
-July <- c(1:31)
+Jun <- c(1:30)
+Jul <- c(1:31)
 Aug <- c(1:31)
-Sept <- c(1:30)
+Sep <- c(1:30)
 Oct <- c(1:31)
 Nov <- c(1:30)
 Dec <- c(1:31)
 
-date <- c(May, June, July, Aug, Sept, Oct, Nov, Dec)
+date <- c(Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)
 
+Jan <- rep("Jan", 31)
+Feb <- rep("Feb", 28)
+Mar <- rep("Mar", 31)
+Apr <- rep("Apr", 30)
 May <- rep("May", 31)
-June <-rep("Jun", 30)
-July <- rep("Jul", 31)
+Jun <- rep("Jun", 30)
+Jul <- rep("Jul", 31)
 Aug <- rep("Aug", 31)
-Sept <- rep("Sep", 30)
+Sep <- rep("Sep", 30)
 Oct <- rep("Oct", 31)
 Nov <- rep("Nov", 30)
 Dec <- rep("Dec", 31)
 
-month <- c(May, June, July, Aug, Sept, Oct, Nov, Dec)
+month <- c(Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)
 
-rm(May, June, July, Aug, Sept, Oct, Nov, Dec)
+rm(Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)
 
-week <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+week <- c("Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu")
 
 year <- as.data.frame(cbind(month, date))
 
-year <- year[4:nrow(year),]
+# year <- year[4:nrow(year),]
 
 days <- rep(week, length.out = nrow(year) )
 
@@ -81,3 +88,5 @@ ggplot(data = year, aes(x = week, y = KG))+
   geom_rect(aes(xmin = 1, xmax = 21, ymin = 83, ymax = 96), fill="yellow", alpha=0.01)+
   geom_rect(aes(xmin = 1, xmax = 21, ymin = 96, ymax = 101), fill="red", alpha=0.01) 
   
+ggsave("2021.pdf", width = 29.7, height = 21.0, units = "cm"  )
+rm(year, KG, normal, obese, overweight)
