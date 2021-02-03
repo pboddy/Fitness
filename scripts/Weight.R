@@ -57,8 +57,8 @@ rownames(year) <- NULL
 
 year
 
-year <- year[1:21,]
-year$week <- c(1:21)
+year <- year[1:32,]
+year$week <- c(1:32)
 year$DayMonth <- paste(year$date, year$month)
 
   
@@ -81,12 +81,13 @@ year[year$bmiNEW >= overweight , ]$SatusNEW <- "overweight"
 year[year$bmiNEW >= obese , ]$SatusNEW <- "obese"
 
 ggplot(data = year, aes(x = week, y = KG))+
-  geom_point() + 
+  geom_point(alpha=0) + 
   scale_y_continuous(breaks = seq(70, 110, by = 0.5))+
-  scale_x_continuous(labels = year$DayMonth, breaks = seq(1,21,1))+
-  geom_rect(aes(xmin = 1, xmax = 21, ymin = 79, ymax = 83), fill="green", alpha=0.01)+
-  geom_rect(aes(xmin = 1, xmax = 21, ymin = 83, ymax = 96), fill="yellow", alpha=0.01)+
-  geom_rect(aes(xmin = 1, xmax = 21, ymin = 96, ymax = 101), fill="red", alpha=0.01) 
+  scale_x_continuous(labels = year$DayMonth, breaks = seq(1,32,1))+
+  geom_rect(aes(xmin = 0, xmax = 32, ymin = 78, ymax = 83), fill="green", alpha=0.01)+
+  geom_rect(aes(xmin = 0, xmax = 32, ymin = 83, ymax = 96), fill="yellow", alpha=0.01)+
+  geom_rect(aes(xmin = 0, xmax = 32, ymin = 96, ymax = 102), fill="red", alpha=0.01)+
+  theme_bw()
   
 ggsave("2021.pdf", width = 29.7, height = 21.0, units = "cm"  )
 rm(year, KG, normal, obese, overweight)
